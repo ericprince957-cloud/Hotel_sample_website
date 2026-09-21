@@ -1,1 +1,102 @@
 @import "tailwindcss";
+
+/*
+ * Design tokens for The Calabash Hotel
+ * Warm, calm, trustworthy — a modern Nigerian boutique hotel.
+ */
+
+@theme {
+  /* Colors */
+  --color-background: #FAF8F3;
+  --color-foreground: #14211F;
+  --color-primary: #0F3D3E;
+  --color-primary-foreground: #FAF8F3;
+  --color-accent: #B8893B;
+  --color-accent-foreground: #14211F;
+  --color-muted: #EDE8DC;
+  --color-muted-foreground: #4A5553;
+  --color-border: #E2DBC9;
+  --color-success: #2F7D5B;
+  --color-destructive: #B3372F;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #14211F;
+
+  /* Typography */
+  --font-heading: "Fraunces", serif;
+  --font-body: "Manrope", sans-serif;
+
+  /* Spacing (8px unit) */
+  --spacing-unit: 8px;
+
+  /* Border radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+
+}
+
+/* Base styles */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-foreground);
+  }
+
+  /* Prevent horizontal scroll on all pages */
+  html, body, #root {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .container-hotel {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section-padding {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 112px;
+      padding-bottom: 112px;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .max-w-prose-hotel {
+    max-width: 65ch;
+  }
+}
