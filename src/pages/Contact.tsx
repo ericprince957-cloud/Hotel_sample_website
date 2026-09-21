@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { useSEO } from "@/hooks/useSEO";
 import {
   MapPin,
   Phone,
@@ -62,6 +63,11 @@ const faqs = [
 ];
 
 export default function Contact() {
+  useSEO({
+    title: "Contact Us",
+    description: `Get in touch with ${siteConfig.name}. Find our address, phone, email, and send us a message.`,
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 

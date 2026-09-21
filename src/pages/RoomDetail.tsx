@@ -3,7 +3,7 @@ import { rooms } from "@/data/rooms";
 import { siteConfig } from "@/data/site";
 import { formatNaira } from "@/lib/utils";
 import { getAmenityIcon } from "@/lib/amenityIcons";
-import { useDocumentTitle, useMetaDescription } from "@/hooks/useDocumentMeta";
+import { useSEO } from "@/hooks/useSEO";
 import { RoomGallery } from "@/components/rooms/RoomGallery";
 import { SimilarRooms } from "@/components/rooms/SimilarRooms";
 import { EnquiryCard } from "@/components/rooms/EnquiryCard";
@@ -22,13 +22,14 @@ export default function RoomDetail() {
   const { slug } = useParams<{ slug: string }>();
   const room = rooms.find((r) => r.slug === slug);
 
-  // Set document title and meta description
-  useDocumentTitle(room ? room.name : "Room not found");
-  useMetaDescription(
-    room
+  useSEO({
+    title: room ? room.name : "Room not found",
+    description: room
       ? `${room.name} at ${siteConfig.name}. ${room.shortDescription}`
-      : "Room not found"
-  );
+      : "Room not found",
+    image: room?.images[0],
+    url: room ? `https://thecalabashhotel.ng/rooms/${room.slug}` : undefined,
+  });
 
   if (!room) {
     return (

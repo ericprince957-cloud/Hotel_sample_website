@@ -7,8 +7,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Users, X } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
+import { siteConfig } from "@/data/site";
 
 export default function Rooms() {
+  useSEO({
+    title: "Rooms and Rates",
+    description: `Browse our comfortable rooms at ${siteConfig.name}. From Standard to Suite, find the perfect room for your stay in ${siteConfig.city}.`,
+  });
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
 

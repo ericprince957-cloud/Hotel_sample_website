@@ -1,4 +1,6 @@
 import { Sparkles, ShieldCheck, Heart } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
+import { siteConfig } from "@/data/site";
 
 // SAMPLE DATA - Replace with real data before launch
 // TODO: Replace with real data before launch
@@ -34,6 +36,11 @@ const values = [
 const teamMembers: Array<{ name: string; role: string; image: string }> = [];
 
 export default function About() {
+  useSEO({
+    title: "About Us",
+    description: `Learn about ${siteConfig.name}. Our story, our values, and what makes us different.`,
+  });
+
   return (
     <div className="section-padding">
       <div className="container-hotel">

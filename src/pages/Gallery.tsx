@@ -3,8 +3,14 @@ import { galleryImages, galleryCategories } from "@/data/gallery";
 import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSEO } from "@/hooks/useSEO";
+import { siteConfig } from "@/data/site";
 
 export default function Gallery() {
+  useSEO({
+    title: "Gallery",
+    description: `Take a look around ${siteConfig.name}. Browse photos of our rooms, dining, facilities, and exterior.`,
+  });
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

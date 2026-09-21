@@ -181,15 +181,21 @@ export function EnquiryDialog({ isOpen, onClose, preselectedRoomSlug }: EnquiryD
       <div
         className="absolute inset-0 bg-black/50"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Dialog */}
-      <div className="relative bg-white w-full md:max-w-lg md:rounded-[14px] rounded-t-[14px] max-h-[90vh] overflow-y-auto">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="enquiry-dialog-title"
+        className="relative bg-white w-full md:max-w-lg md:rounded-[14px] rounded-t-[14px] max-h-[90vh] overflow-y-auto"
+      >
         {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 w-10 h-10 rounded-full hover:bg-[#EDE8DC] flex items-center justify-center z-10"
-          aria-label="Close"
+          aria-label="Close dialog"
         >
           <X size={20} />
         </button>
@@ -197,7 +203,7 @@ export function EnquiryDialog({ isOpen, onClose, preselectedRoomSlug }: EnquiryD
         <div className="p-6 md:p-8">
           {!submitResult ? (
             <>
-              <h2 className="text-[22px] md:text-[28px] font-[Fraunces] font-semibold text-[#0F3D3E] mb-2">
+              <h2 id="enquiry-dialog-title" className="text-[22px] md:text-[28px] font-[Fraunces] font-semibold text-[#0F3D3E] mb-2">
                 Make an enquiry
               </h2>
               <p className="text-[16px] text-[#4A5553] mb-6">
