@@ -3,21 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
+import { useEnquiryDialog } from "@/components/EnquiryDialogContext";
 import { Calendar, Users } from "lucide-react";
 
 export function Hero() {
   const navigate = useNavigate();
+  const { openEnquiryDialog } = useEnquiryDialog();
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("2");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (checkIn) params.set("checkIn", checkIn);
-    if (checkOut) params.set("checkOut", checkOut);
-    if (guests) params.set("guests", guests);
-    navigate(`/rooms?${params.toString()}`);
+    openEnquiryDialog();
   };
 
   return (

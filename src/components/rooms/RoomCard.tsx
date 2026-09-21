@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatNaira } from "@/lib/utils";
 import { getAmenityIcon } from "@/lib/amenityIcons";
+import { useEnquiryDialog } from "@/components/EnquiryDialogContext";
 import { Users, BedDouble, Maximize } from "lucide-react";
 import type { Room } from "@/data/rooms";
 
@@ -13,6 +14,7 @@ interface RoomCardProps {
 
 export function RoomCard({ room, showAmenities = false }: RoomCardProps) {
   const isUnavailable = !room.isAvailable;
+  const { openEnquiryDialog } = useEnquiryDialog();
 
   return (
     <div className="bg-white rounded-[14px] overflow-hidden card-lift flex flex-col">
@@ -103,10 +105,10 @@ export function RoomCard({ room, showAmenities = false }: RoomCardProps) {
                 View details
               </Button>
             </Link>
-            <Link
-              to={`/contact?room=${room.slug}`}
+            <button
+              onClick={() => !isUnavailable && openEnquiryDialog(room.slug)}
+              disabled={isUnavailable}
               className="flex-1"
-              onClick={(e) => isUnavailable && e.preventDefault()}
             >
               <Button
                 size="sm"
@@ -115,7 +117,7 @@ export function RoomCard({ room, showAmenities = false }: RoomCardProps) {
               >
                 Enquire
               </Button>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

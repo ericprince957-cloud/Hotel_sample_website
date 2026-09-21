@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { formatNaira } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { useEnquiryDialog } from "@/components/EnquiryDialogContext";
 import { MessageCircle, Phone } from "lucide-react";
 
 interface EnquiryCardProps {
@@ -11,6 +11,7 @@ interface EnquiryCardProps {
 }
 
 export function EnquiryCard({ roomName, roomSlug, pricePerNight }: EnquiryCardProps) {
+  const { openEnquiryDialog } = useEnquiryDialog();
   const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
     `Hello ${siteConfig.name}, I would like to enquire about the ${roomName}.`
   )}`;
@@ -32,11 +33,13 @@ export function EnquiryCard({ roomName, roomSlug, pricePerNight }: EnquiryCardPr
           </div>
 
           <div className="space-y-3">
-            <Link to={`/contact?room=${roomSlug}`}>
-              <Button size="lg" className="w-full">
-                Enquire now
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="w-full"
+              onClick={() => openEnquiryDialog(roomSlug)}
+            >
+              Enquire now
+            </Button>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="w-full">
                 <MessageCircle size={16} />
@@ -70,9 +73,12 @@ export function EnquiryCard({ roomName, roomSlug, pricePerNight }: EnquiryCardPr
               </span>
             </p>
           </div>
-          <Link to={`/contact?room=${roomSlug}`}>
-            <Button size="default">Enquire now</Button>
-          </Link>
+          <Button
+            size="default"
+            onClick={() => openEnquiryDialog(roomSlug)}
+          >
+            Enquire now
+          </Button>
         </div>
       </div>
     </>

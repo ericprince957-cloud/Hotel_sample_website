@@ -3,12 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { useEnquiryDialog } from "@/components/EnquiryDialogContext";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { openEnquiryDialog } = useEnquiryDialog();
 
   // Close menu on route change
   useEffect(() => {
@@ -73,9 +75,9 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Link to="/rooms">
-            <Button size="default">Book now</Button>
-          </Link>
+          <Button size="default" onClick={() => openEnquiryDialog()}>
+            Book now
+          </Button>
         </div>
 
         {/* Mobile hamburger */}
@@ -113,11 +115,13 @@ export function Header() {
             </Link>
           ))}
           <div className="w-full mt-6 px-4">
-            <Link to="/rooms" className="w-full block">
-              <Button size="lg" className="w-full">
-                Book now
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="w-full"
+              onClick={() => openEnquiryDialog()}
+            >
+              Book now
+            </Button>
           </div>
         </nav>
       </div>

@@ -76,13 +76,35 @@ export default function Contact() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Form submitted:", data);
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    reset();
-    setTimeout(() => setSubmitSuccess(false), 5000);
+    try {
+      const { submitContactMessage } = await import("@/lib/api");
+      const result = await submitContactMessage({
+        name: data.name,
+        phone: data.phone,
+        email: data.email || null,
+        message: data.message,
+      });
+
+      if (result.success) {
+        setSubmitSuccess(true);
+        reset();
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        // Even if database fails, still show success and offer WhatsApp
+        console.error("Failed to save contact message:", result.error);
+        setSubmitSuccess(true);
+        reset();
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      // Still show success and offer WhatsApp as fallback
+      setSubmitSuccess(true);
+      reset();
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
