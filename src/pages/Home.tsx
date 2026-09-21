@@ -1,42 +1,25 @@
-import { siteConfig } from "@/data/site";
+import { Hero } from "@/components/home/Hero";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { FeaturedRooms } from "@/components/home/FeaturedRooms";
+import { WhyStayHere } from "@/components/home/WhyStayHere";
+import { Amenities } from "@/components/home/Amenities";
+import { GalleryPreview } from "@/components/home/GalleryPreview";
+import { GuestReviews } from "@/components/home/GuestReviews";
+import { Location } from "@/components/home/Location";
+import { FinalCTA } from "@/components/home/FinalCTA";
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero section placeholder */}
-      <section className="section-padding">
-        <div className="container-hotel">
-          <div className="max-w-prose-hotel">
-            <h1 className="text-[40px] md:text-[56px] font-[Fraunces] font-semibold text-[#0F3D3E] leading-[1.15] mb-4">
-              {siteConfig.tagline}
-            </h1>
-            <p className="text-[18px] text-[#4A5553] mb-8">
-              Welcome to {siteConfig.name}. A warm, modern hotel in {siteConfig.city},{" "}
-              {siteConfig.state}.
-            </p>
-            <p className="text-[16px] text-[#4A5553]">
-              Page content coming soon.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="container-hotel">
-        <hr className="border-[#E2DBC9]" />
-      </div>
-
-      {/* Placeholder content section */}
-      <section className="section-padding">
-        <div className="container-hotel">
-          <h2 className="text-[28px] md:text-[40px] font-[Fraunces] font-semibold text-[#0F3D3E] mb-4">
-            Our Rooms
-          </h2>
-          <p className="text-[16px] text-[#4A5553] max-w-prose-hotel">
-            Room listings and booking will appear here.
-          </p>
-        </div>
-      </section>
-    </div>
+    <>
+      <Hero />
+      <TrustStrip />
+      <FeaturedRooms />
+      <WhyStayHere />
+      <Amenities />
+      <GalleryPreview />
+      <GuestReviews />
+      <Location />
+      <FinalCTA />
+    </>
   );
 }
